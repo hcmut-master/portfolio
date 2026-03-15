@@ -61,22 +61,22 @@ export default function Home() {
                 <div className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl group transition-all hover:bg-surface-bright shadow-[0_4px_20px_rgba(25,28,30,0.03)]">
                   <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">NV</div>
                   <div>
-                    <h4 className="font-headline font-bold text-on-surface">Nguyen Van A</h4>
-                    <p className="font-body text-xs text-on-surface-variant">Project Lead / Backend Architecture</p>
+                    <h4 className="font-headline font-bold text-on-surface">Nguyễn Hữu Trưởng</h4>
+                    <p className="font-body text-xs text-on-surface-variant">2470573</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl group transition-all hover:bg-surface-bright shadow-[0_4px_20px_rgba(25,28,30,0.03)]">
                   <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">TB</div>
                   <div>
-                    <h4 className="font-headline font-bold text-on-surface">Tran Thi B</h4>
-                    <p className="font-body text-xs text-on-surface-variant">Data Scientist / Researcher</p>
+                    <h4 className="font-headline font-bold text-on-surface">Nguyễn Nhật Thanh</h4>
+                    <p className="font-body text-xs text-on-surface-variant">2570316</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl group transition-all hover:bg-surface-bright shadow-[0_4px_20px_rgba(25,28,30,0.03)]">
                   <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">LC</div>
                   <div>
-                    <h4 className="font-headline font-bold text-on-surface">Le Van C</h4>
-                    <p className="font-body text-xs text-on-surface-variant">Frontend Engineer / UI Design</p>
+                    <h4 className="font-headline font-bold text-on-surface">Võ Thị Bích Phượng</h4>
+                    <p className="font-body text-xs text-on-surface-variant">2470570</p>
                   </div>
                 </div>
               </div>
