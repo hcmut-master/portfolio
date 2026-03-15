@@ -27,7 +27,7 @@ export default function Home() {
                   <span className="material-symbols-outlined text-on-primary-container">person_check</span>
                   <div>
                     <p className="text-[10px] font-bold text-on-primary/60 uppercase font-label">Supervising Faculty</p>
-                    <p className="font-headline font-bold text-lg">Dr. Nguyen Huu D</p>
+                    <p className="font-headline font-bold text-lg">TS. Lê Thành Sách</p>
                   </div>
                 </div>
               </div>
