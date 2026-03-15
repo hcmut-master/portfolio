@@ -123,7 +123,7 @@ export default function Home() {
                     Implementation of deep convolutional neural networks for automated medical image analysis. This task involves fine-tuning pre-trained models on specialized healthcare datasets to improve diagnostic accuracy.
                   </p>
                   <div className="mt-auto flex items-center justify-between">
-                    <Link to="/project/1" className="px-8 py-3 bg-primary text-on-primary rounded-md font-medium text-sm transition-all hover:bg-surface-tint shadow-[0_4px_10px_rgba(0,28,74,0.15)]">
+                    <Link to="/project/btl1" className="px-8 py-3 bg-primary text-on-primary rounded-md font-medium text-sm transition-all hover:bg-surface-tint shadow-[0_4px_10px_rgba(0,28,74,0.15)]">
                       View Details
                     </Link>
                     <div className="flex -space-x-3">

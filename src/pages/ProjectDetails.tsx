@@ -1,6 +1,42 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import Markdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import remarkGfm from 'remark-gfm';
 
 export default function ProjectDetails() {
+  const { id } = useParams<{ id: string }>();
+  const [content, setContent] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        setLoading(true);
+        // Fetch the markdown file from the public directory
+        const response = await fetch(`/projects/${id}/content.md`);
+        if (!response.ok) {
+          throw new Error('Project content not found');
+        }
+        const text = await response.text();
+        setContent(text);
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load content');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchContent();
+    }
+  }, [id]);
+
+  // Base URL for resolving relative image paths in the markdown
+  const baseUrl = `/projects/${id}/`;
   return (
     <div className="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
       {/* Breadcrumbs */}
@@ -92,147 +128,36 @@ export default function ProjectDetails() {
 
         {/* Main Content Sections (Tabbed/Editorial) */}
         <article className="lg:col-span-9 space-y-24">
-          {/* Section 1: EDA */}
-          <section className="space-y-8">
-            <div className="flex items-baseline justify-between border-b-2 border-primary/10 pb-4">
-              <h2 className="font-headline text-3xl font-extrabold text-primary">01. Exploratory Data Analysis</h2>
-              <span className="material-symbols-outlined text-primary cursor-pointer">expand_less</span>
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4 text-on-surface-variant leading-relaxed">
-                <p className="text-lg">Our initial phase involved a comprehensive audit of the dataset distribution across 12 distinct classes of microscopic imagery.</p>
-                <p>We identified significant class imbalance in the "Rare Pathogen" category, which influenced our later augmentation strategy. Visual analysis showed a high variance in luminosity across data batches.</p>
-              </div>
-              <div className="bg-surface-container-low aspect-video rounded-xl overflow-hidden relative group">
-                <div className="absolute inset-0 flex items-center justify-center bg-surface-container-high/50">
-                  <span className="material-symbols-outlined text-4xl text-outline-variant">bar_chart</span>
-                </div>
-                <img className="w-full h-full object-cover opacity-20 mix-blend-multiply" alt="Data distribution chart showing class frequencies" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNu8NVmnPCnbPqkdySIOIW1sjskpfgY5zXb24R-rf2JpYOPay4wvQr3q5zr1im_GhBWmGcONZEq-d1fIygRbMf4QxnsuxftjKAQd7e-jJWBxtRuKy6qvNB7-t7Q7wbgkMJ0kmnL_lOKQejc_e4zQTBMgKUt4FBDL9yAMHY1i-cFBWOVqd0lsfFxhOnNq2O_kEKyKfyRE0c6Z6GegQWspFXMOssNx5Gxx0HwvjfC5NI3wV2PYMBbCkgBnpHjdoX9imOqiFdSz0wx90"/>
-                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-md text-xs font-bold text-primary shadow-sm">
-                  FIG 1: Dataset class distribution (pre-augmentation)
-                </div>
-              </div>
+          ) : error ? (
+            <div className="bg-error-container text-on-error-container p-6 rounded-xl">
+              <h3 className="font-bold text-lg mb-2">Error Loading Project</h3>
+              <p>{error}</p>
             </div>
-          </section>
-
-          {/* Section 2: Dataset & Dataloader */}
-          <section className="space-y-8">
-            <div className="flex items-baseline justify-between border-b-2 border-primary/10 pb-4">
-              <h2 className="font-headline text-3xl font-extrabold text-primary">02. Dataset & Augmentation</h2>
-              <span className="material-symbols-outlined text-primary cursor-pointer">expand_more</span>
-            </div>
-            <div className="bg-surface-container-lowest p-8 rounded-xl space-y-6">
-              <p className="text-on-surface-variant">To combat overfitting, we implemented a custom pipeline using <i>Albumentations</i> with the following parameters:</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="p-4 bg-surface rounded-md border-l-4 border-surface-tint">
-                  <span className="text-[10px] font-bold text-on-surface-variant block uppercase mb-1">ROTATION</span>
-                  <span className="text-lg font-headline font-bold text-primary">±45°</span>
-                </div>
-                <div className="p-4 bg-surface rounded-md border-l-4 border-surface-tint">
-                  <span className="text-[10px] font-bold text-on-surface-variant block uppercase mb-1">GAUSSIAN</span>
-                  <span className="text-lg font-headline font-bold text-primary">σ=0.5</span>
-                </div>
-                <div className="p-4 bg-surface rounded-md border-l-4 border-surface-tint">
-                  <span className="text-[10px] font-bold text-on-surface-variant block uppercase mb-1">BATCH SIZE</span>
-                  <span className="text-lg font-headline font-bold text-primary">64</span>
-                </div>
-                <div className="p-4 bg-surface rounded-md border-l-4 border-surface-tint">
-                  <span className="text-[10px] font-bold text-on-surface-variant block uppercase mb-1">WORKERS</span>
-                  <span className="text-lg font-headline font-bold text-primary">8</span>
-                </div>
+          ) : (
+            <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+              <div className="markdown-body prose prose-slate max-w-none prose-headings:font-headline prose-headings:text-primary prose-p:text-on-surface-variant prose-li:text-on-surface-variant prose-a:text-primary prose-img:rounded-xl prose-img:shadow-md prose-table:w-full prose-table:text-left prose-th:px-6 prose-th:py-4 prose-th:bg-surface-container prose-th:text-primary prose-td:px-6 prose-td:py-4 prose-tr:border-b prose-tr:border-surface-container-high">
+                <Markdown 
+                  remarkPlugins={[remarkMath, remarkGfm]} 
+                  rehypePlugins={[rehypeKatex]}
+                  components={{
+                    img: ({node, ...props}) => {
+                      // If the image source is relative, prepend the base URL
+                      const src = props.src?.startsWith('http') || props.src?.startsWith('/') 
+                        ? props.src 
+                        : `${baseUrl}${props.src}`;
+                      return <img {...props} src={src} alt={props.alt || ''} />;
+                    }
+                  }}
+                >
+                  {content}
+                </Markdown>
               </div>
             </div>
-          </section>
-
-          {/* Section 3: Model Construction */}
-          <section className="space-y-8">
-            <div className="flex items-baseline justify-between border-b-2 border-primary/10 pb-4">
-              <h2 className="font-headline text-3xl font-extrabold text-primary">03. Construction & Training</h2>
-              <span className="material-symbols-outlined text-primary cursor-pointer">expand_more</span>
-            </div>
-            <div className="relative bg-primary py-12 px-8 rounded-2xl overflow-hidden">
-              <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
-                <div className="flex-1 space-y-4">
-                  <h3 className="text-on-primary font-headline text-2xl font-bold">ResNet-50 Optimized Backbone</h3>
-                  <p className="text-on-primary-container text-sm leading-relaxed">We modified the final fully connected layers to include dropout (p=0.3) and batch normalization to stabilize training on smaller image crops.</p>
-                  <code className="block bg-primary-container/50 p-4 rounded text-primary-fixed font-mono text-xs whitespace-pre-wrap">
-{`self.backbone = models.resnet50(pretrained=True)
-self.fc = nn.Sequential(
-  nn.Linear(2048, 512),
-  nn.ReLU(),
-  nn.Dropout(0.3),
-  nn.Linear(512, num_classes)
-)`}
-                  </code>
-                </div>
-                <div className="w-full md:w-1/3 aspect-square bg-surface-container-highest/10 rounded-full border-4 border-dashed border-primary-fixed/20 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-6xl text-primary-fixed">hub</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 4: Experimental Results */}
-          <section className="space-y-8">
-            <div className="flex items-baseline justify-between border-b-2 border-primary/10 pb-4">
-              <h2 className="font-headline text-3xl font-extrabold text-primary">04. Results & Analysis</h2>
-              <span className="material-symbols-outlined text-primary cursor-pointer">expand_more</span>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Table Style */}
-              <div className="space-y-4">
-                <p className="font-label text-xs font-bold tracking-widest text-on-surface-variant uppercase">PERFORMANCE METRICS</p>
-                <div className="overflow-hidden rounded-xl bg-surface-container-low">
-                  <table className="w-full text-left">
-                    <thead className="bg-surface-container text-xs font-bold text-primary">
-                      <tr>
-                        <th className="px-6 py-4">Metric</th>
-                        <th className="px-6 py-4">Baseline</th>
-                        <th className="px-6 py-4">Our Model</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-sm">
-                      <tr className="hover:bg-surface-bright transition-colors">
-                        <td className="px-6 py-4 font-medium">Accuracy</td>
-                        <td className="px-6 py-4">84.2%</td>
-                        <td className="px-6 py-4 text-surface-tint font-bold">92.7%</td>
-                      </tr>
-                      <tr className="bg-surface-container-lowest/40 hover:bg-surface-bright transition-colors">
-                        <td className="px-6 py-4 font-medium">Precision</td>
-                        <td className="px-6 py-4">81.5%</td>
-                        <td className="px-6 py-4 text-surface-tint font-bold">91.2%</td>
-                      </tr>
-                      <tr className="hover:bg-surface-bright transition-colors">
-                        <td className="px-6 py-4 font-medium">Recall</td>
-                        <td className="px-6 py-4">79.8%</td>
-                        <td className="px-6 py-4 text-surface-tint font-bold">89.5%</td>
-                      </tr>
-                      <tr className="bg-surface-container-lowest/40 hover:bg-surface-bright transition-colors">
-                        <td className="px-6 py-4 font-medium">F1-Score</td>
-                        <td className="px-6 py-4">80.6%</td>
-                        <td className="px-6 py-4 text-surface-tint font-bold">90.3%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              {/* Chart Placeholder */}
-              <div className="flex flex-col gap-4">
-                <p className="font-label text-xs font-bold tracking-widest text-on-surface-variant uppercase">LEARNING CURVES</p>
-                <div className="flex-1 bg-surface-container-low rounded-xl flex flex-col items-center justify-center p-8 gap-4 min-h-[300px]">
-                  <div className="w-full h-48 relative overflow-hidden flex items-end gap-2">
-                    <div className="w-full h-1/4 bg-tertiary-fixed rounded-t"></div>
-                    <div className="w-full h-1/2 bg-tertiary-fixed rounded-t"></div>
-                    <div className="w-full h-2/3 bg-tertiary-fixed rounded-t"></div>
-                    <div className="w-full h-3/4 bg-tertiary-fixed rounded-t"></div>
-                    <div className="w-full h-full bg-surface-tint rounded-t"></div>
-                    <div className="w-full h-[95%] bg-surface-tint rounded-t"></div>
-                  </div>
-                  <p className="text-[10px] text-on-surface-variant italic">Training Loss (Brown) vs. Validation Accuracy (Blue)</p>
-                </div>
-              </div>
-            </div>
-          </section>
+          )}
         </article>
       </main>
 
