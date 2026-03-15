@@ -16,7 +16,7 @@ export default function ProjectDetails() {
       try {
         setLoading(true);
         // Fetch the markdown file from the public directory
-        const response = await fetch(`/projects/${id}/content.md`);
+        const response = await fetch(`./projects/${id}/content.md`);
         if (!response.ok) {
           throw new Error('Project content not found');
         }
@@ -36,7 +36,7 @@ export default function ProjectDetails() {
   }, [id]);
 
   // Base URL for resolving relative image paths in the markdown
-  const baseUrl = `/projects/${id}/`;
+  const baseUrl = `./projects/${id}/`;
   return (
     <div className="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
       {/* Breadcrumbs */}
