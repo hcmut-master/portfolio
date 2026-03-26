@@ -53,20 +53,20 @@ export default function ProjectDetails() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex flex-col gap-4">
             <div className="flex gap-2">
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">ADVANCED MACHINE LEARNING</span>
-              <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">COMPUTER VISION</span>
+              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">HỌC SÂU</span>
+              <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">THỊ GIÁC MÁY TÍNH</span>
             </div>
             <h1 className="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter leading-tight max-w-4xl">
-              Big Task 1 (BTL 1) - Computer Vision Analysis
+              Bài Tập Lớn 1 - Học Sâu Trong Thị Giác Máy Tính
             </h1>
             <div className="flex flex-wrap items-center gap-6 mt-4 text-on-primary/80">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px]">group</span>
-                <span className="font-medium">Team Alpha</span>
+                <span className="font-medium">Nhóm 4</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[20px]">person</span>
-                <span className="font-medium">Dr. Nguyen Huu D</span>
+                <span className="font-medium">TS. Lê Thành Sách</span>
               </div>
             </div>
           </div>
