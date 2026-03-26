@@ -1,0 +1,17 @@
+Image Sources for Multimodal Classification Report
+=====================================================
+
+1. clip_architecture.png
+   Source: OpenAI CLIP Official Repository
+   URL: https://github.com/openai/CLIP/blob/main/CLIP.png
+   License: MIT License
+   Description: Official CLIP architecture diagram showing vision and text encoders
+
+2. clip_official.png
+   Source: OpenAI CLIP Official Repository (alternative)
+   URL: https://github.com/openai/CLIP/raw/main/CLIP.png
+   License: MIT License
+   Description: CLIP architecture diagram (backup)
+
+Citation for LaTeX:
+\footnote{CLIP architecture diagram from OpenAI CLIP repository: \url{https://github.com/openai/CLIP}}
