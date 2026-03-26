@@ -59,21 +59,21 @@ export default function Home() {
               <h2 className="font-label text-[10px] font-extrabold tracking-[0.2em] uppercase text-outline mb-8">RESEARCH MEMBERS</h2>
               <div className="space-y-4">
                 <div className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl group transition-all hover:bg-surface-bright shadow-[0_4px_20px_rgba(25,28,30,0.03)]">
-                  <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">NV</div>
+                  <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">HT</div>
                   <div>
                     <h4 className="font-headline font-bold text-on-surface">Nguyễn Hữu Trưởng</h4>
                     <p className="font-body text-xs text-on-surface-variant">2470573</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl group transition-all hover:bg-surface-bright shadow-[0_4px_20px_rgba(25,28,30,0.03)]">
-                  <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">TB</div>
+                  <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">NT</div>
                   <div>
                     <h4 className="font-headline font-bold text-on-surface">Nguyễn Nhật Thanh</h4>
                     <p className="font-body text-xs text-on-surface-variant">2570316</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl group transition-all hover:bg-surface-bright shadow-[0_4px_20px_rgba(25,28,30,0.03)]">
-                  <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">LC</div>
+                  <div className="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center font-headline font-bold text-on-secondary-fixed">BP</div>
                   <div>
                     <h4 className="font-headline font-bold text-on-surface">Võ Thị Bích Phượng</h4>
                     <p className="font-body text-xs text-on-surface-variant">2470570</p>
@@ -109,8 +109,8 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-10">
               {/* Project 1 (BTL 1) */}
               <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(25,28,30,0.06)] group flex flex-col md:flex-row">
-                <div className="md:w-1/3 relative h-64 md:h-auto overflow-hidden">
-                  <img alt="BTL 1 Visual" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeU7UIZtZft5TCulVeHeSHbs-waLHixGi4uoBKF4xlP7do3pVA4WhiHDRUMOb0j1--1QZXlbACOP55yjqmUNxMApOcHG2PlBWPCSi1XBwUAddONimf8CdZr9VtDAAGuSbUYgEt-1-JvxzXfOTxQnlD_Ynj5fvWg0pRbmiCmtfBIuG115b3aHrWsO4cFtsqqVt4XaL8k0Fd87fprLbho5QRZoM1rkI3ZWYu7V3h2p3Cqy5TanlOJGqz3LJjM9imdByoONR-sjrriTY"/>
+                <div className="md:w-1/3 relative h-64 md:h-auto overflow-hidden bg-white flex items-center justify-center">
+                  <img alt="BTL 1 Visual" className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" src="./projects/btl1/Images/clip_architecture.png"/>
                   <div className="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
                 </div>
                 <div className="md:w-2/3 p-10 flex flex-col justify-center">
@@ -118,23 +118,23 @@ export default function Home() {
                     <span className="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">BTL 1</span>
                     <span className="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">ACTIVE</span>
                   </div>
-                  <h4 className="font-headline text-2xl font-bold text-primary mb-4">Project 1 (BTL 1)</h4>
+                  <h4 className="font-headline text-2xl font-bold text-primary mb-4">Học Sâu và Ứng Dụng Trong Thị Giác Máy Tính</h4>
                   <p className="font-body text-on-surface-variant leading-relaxed mb-8">
-                    Implementation of deep convolutional neural networks for automated medical image analysis. This task involves fine-tuning pre-trained models on specialized healthcare datasets to improve diagnostic accuracy.
+                    Mục tiêu cốt lõi của đề tài là vận dụng và đánh giá hiệu năng của các kiến trúc mạng nơ-ron học sâu tiên tiến (CNN, RNN, ViT, Transformer, CLIP) trên ba loại dữ liệu khác biệt: ảnh, văn bản và đa phương thức (ảnh kết hợp văn bản).
                   </p>
                   <div className="mt-auto flex items-center justify-between">
                     <Link to="/project/btl1" className="px-8 py-3 bg-primary text-on-primary rounded-md font-medium text-sm transition-all hover:bg-surface-tint shadow-[0_4px_10px_rgba(0,28,74,0.15)]">
                       View Details
                     </Link>
                     <div className="flex -space-x-3">
-                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Nguyen Van A">
-                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">NV</div>
+                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Nguyễn Hữu Trưởng">
+                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">HT</div>
                       </div>
-                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Tran Thi B">
-                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">TB</div>
+                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Nguyễn Nhật Thanh">
+                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">NT</div>
                       </div>
-                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Le Van C">
-                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">LC</div>
+                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Võ Thị Bích Phượng">
+                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">BP</div>
                       </div>
                     </div>
                   </div>
