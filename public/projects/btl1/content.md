@@ -195,11 +195,11 @@ Dựa trên ma trận nhầm lẫn (Confusion Matrix) với các giá trị $TP,
 
 Tập dữ liệu được sử dụng là *IMDb Reviews Dataset*, bao gồm $50,000$ đánh giá điện ảnh được dán nhãn nhị phân. Tập dữ liệu thể hiện tính cân bằng hoàn hảo với tỷ lệ 50% cho mỗi lớp (Tích cực và Tiêu cực), giúp loại bỏ rủi ro thiên lệch (class imbalance bias).
 
-<figure id="fig:imdb-word">
-<img src="Images/imdb-1.png" />
-<img src="Images/imdb-word.png" />
-<figcaption>Từ khóa phổ biến trong các đánh giá</figcaption>
-</figure>
+![Từ khóa phổ biến trong các đánh giá](Images/imdb-1.png)
+
+![Từ khóa phổ biến trong các đánh giá](Images/imdb-word.png)
+
+*Hình: Từ khóa phổ biến trong các đánh giá*
 
 Phân tích phân phối chỉ ra rằng 92.6% số lượng đánh giá có độ dài $\le 512$ từ. Do đó, ngưỡng giới hạn chiều dài chuỗi (*max sequence length*) được thiết lập như sau:
 
@@ -277,15 +277,15 @@ Quá trình Fine-tuning áp dụng các kỹ thuật đặc thù:
 
 #### Tóm tắt siêu tham số thực nghiệm
 
-  **Thông số**     **Bi-LSTM + GloVe**    **BERT (Fine-tuning)**
-  --------------- ---------------------- ------------------------
-  Learning Rate         $10^{-3}$           $2 \times 10^{-5}$
-  Optimizer                Adam                   AdamW
-  Max Length               256                     512
-  Batch Size                16                      16
-  Epochs           100 (Early Stopping)             3
+**Bảng:** So sánh cấu hình huấn luyện của hai mô hình
 
-  : So sánh cấu hình huấn luyện của hai mô hình
+| **Thông số** | **Bi-LSTM + GloVe** | **BERT (Fine-tuning)** |
+| --- | --- | --- |
+| Learning Rate | $10^{-3}$ | $2 \times 10^{-5}$ |
+| Optimizer | Adam | AdamW |
+| Max Length | 256 | 512 |
+| Batch Size | 16 | 16 |
+| Epochs | 100 (Early Stopping) | 3 |
 
 ## Kết quả Thực nghiệm và Đánh giá
 
@@ -331,24 +331,24 @@ Sự phân kỳ sâu sắc này là minh chứng toán học kinh điển cho hi
 
 Để đưa ra kết luận khách quan, hai mô hình tốt nhất (Best Checkpoints) được tải lên và suy diễn trên tập Test hoàn toàn độc lập gồm 5,000 mẫu (2,500 Tiêu cực và 2,500 Tích cực).
 
-  **Chỉ số**                    **Lớp (Class)**    **Bi-LSTM**   **BERT (Fine-tuned)**
-  ----------------------------- ----------------- ------------- -----------------------
-  **Độ xác thực (Precision)**   Negative (0)         $0.90$         $\mathbf{0.95}$
-                                Positive (1)         $0.89$         $\mathbf{0.93}$
-  **Độ bao phủ (Recall)**       Negative (0)         $0.89$         $\mathbf{0.93}$
-                                Positive (1)         $0.90$         $\mathbf{0.95}$
-  **F1-Score**                  Negative (0)         $0.90$         $\mathbf{0.94}$
-                                Positive (1)         $0.89$         $\mathbf{0.94}$
+**Bảng:** Báo cáo phân loại (Classification Report) chi tiết của hai mô hình
 
-  : Báo cáo phân loại (Classification Report) chi tiết của hai mô hình
+| **Chỉ số** | **Lớp (Class)** | **Bi-LSTM** | **BERT (Fine-tuned)** |
+| --- | --- | --- | --- |
+| **Độ xác thực (Precision)** | Negative (0) | $0.90$ | $\mathbf{0.95}$ |
+| | Positive (1) | $0.89$ | $\mathbf{0.93}$ |
+| **Độ bao phủ (Recall)** | Negative (0) | $0.89$ | $\mathbf{0.93}$ |
+| | Positive (1) | $0.90$ | $\mathbf{0.95}$ |
+| **F1-Score** | Negative (0) | $0.90$ | $\mathbf{0.94}$ |
+| | Positive (1) | $0.89$ | $\mathbf{0.94}$ |
 
-  **Độ đo (Metric)**             **Bi-LSTM**   **BERT (Fine-tuned)**   **Khoảng cách**
-  ----------------------------- ------------- ----------------------- -----------------
-  **Accuracy (Độ chính xác)**     $89.50\%$     $\mathbf{94.32\%}$        $+4.82\%$
-  **Test Loss**                   $0.3089$       $\mathbf{0.2511}$        $-0.0578$
-  **Macro Avg F1-Score**          $0.8950$       $\mathbf{0.9432}$        $+0.0482$
+**Bảng:** Tổng hợp hiệu suất tổng thể (Overall Performance)
 
-  : Tổng hợp hiệu suất tổng thể (Overall Performance)
+| **Độ đo (Metric)** | **Bi-LSTM** | **BERT (Fine-tuned)** | **Khoảng cách** |
+| --- | --- | --- | --- |
+| **Accuracy (Độ chính xác)** | $89.50\%$ | $\mathbf{94.32\%}$ | $+4.82\%$ |
+| **Test Loss** | $0.3089$ | $\mathbf{0.2511}$ | $-0.0578$ |
+| **Macro Avg F1-Score** | $0.8950$ | $\mathbf{0.9432}$ | $+0.0482$ |
 
 Dữ liệu từ hai bảng trên khẳng định sự ưu việt toàn diện của kiến trúc Transformer. BERT đạt mức F1-Score đồng đều $0.94$ cho cả hai lớp cảm xúc, trong khi Độ xác thực (Precision) của lớp Negative lên tới $0.95$, đồng nghĩa với việc khi BERT dự đoán một đánh giá là \"Tiêu cực\", khả năng sai sót chỉ ở mức $5\%$. Bi-LSTM duy trì mức hiệu suất dao động quanh biên độ $0.89 - 0.90$, một kết quả đáng khích lệ đối với kiến trúc tuần tự nhưng vẫn bộc lộ khoảng cách công nghệ rõ nét.
 
@@ -536,7 +536,7 @@ $$H_{out} = \left\lfloor \frac{H_{in} - K}{S} \right\rfloor + 1$$
 | **Loại Pooling** | **Định nghĩa** | **Ứng dụng** |
 | --- | --- | --- |
 | Max Pooling | $y_{i,j} = \max_{(p,q) \in R_{i,j}} x_{p,q}$ | Giữ lại feature mạnh nhất |
-| Average Pooling | $y_{i,j} = \frac{1}{|R_{i,j}|}\sum_{(p,q) \in R_{i,j}} x_{p,q}$ | Làm mịn features |
+| Average Pooling | $y_{i,j} = \frac{1}{R_{i,j}}\sum_{(p,q) \in R_{i,j}} x_{p,q}$ | Làm mịn features |
 | L2 Pooling | $y_{i,j} = \sqrt{\sum_{(p,q) \in R_{i,j}} x_{p,q}^2}$ | Cân bằng hơn Max Pooling |
 
 
@@ -786,26 +786,15 @@ Dữ liệu từ ma trận nhầm lẫn và báo cáo chi tiết cho thấy sự
 | **ResNet18 Frozen** | **77%** | **0.77** | Ship (0.84) | Cat (0.64) |
 
 
-<figure id="fig:confusion-matrices-cifar">
-<figure>
-<img src="Images/confusionmatrix-custon.png" />
-<figcaption>Custom ResNet</figcaption>
-</figure>
-<figure>
-<img src="Images/confusionmatrix-pretrain-resnent18.png" />
-<figcaption>ResNet18 Fine-tuning</figcaption>
-</figure>
-<figure>
-<img src="Images/confusionmatrix-resnet18-fronze.png" />
-<figcaption>ResNet18 Frozen</figcaption>
-</figure>
-<figure>
-<img src="Images/confusionmatrix-vit.png" />
-<figcaption>ViT Frozen</figcaption>
-</figure>
-<figcaption>Ma trận nhầm lẫn của các mô hình đánh giá trên tập Kiểm
-thử</figcaption>
-</figure>
+![Custom ResNet](Images/confusionmatrix-custon.png)
+
+![ResNet18 Fine-tuning](Images/confusionmatrix-pretrain-resnent18.png)
+
+![ResNet18 Frozen](Images/confusionmatrix-resnet18-fronze.png)
+
+![ViT Frozen](Images/confusionmatrix-vit.png)
+
+*Hình: Ma trận nhầm lẫn của các mô hình đánh giá trên tập Kiểm thử*
 
 #### Insights và Giải thích chuyên sâu
 
@@ -1060,8 +1049,7 @@ Zero-shot classification là phương pháp phân loại **không cần huấn l
     -   Category \"car\" → `"a photo of a car"`
 
 2.  **Encode image và text**: $$\begin{aligned}
-            \mathbf{v}_{\text{img}} &= \text{VisionEncoder}(\text{image}) \\
-            \mathbf{v}_{\text{text}}^{(i)} &= \text{TextEncoder}(\text{prompt}_i), \quad i=1,\ldots,C
+            \mathbf{v}_{\text{img}} &= \text{VisionEncoder}(\text{image}) \\ \mathbf{v}_{\text{text}}^{(i)} &= \text{TextEncoder}(\text{prompt}_i), \quad i=1,\ldots,C
         
     \end{aligned}$$
 
@@ -1357,17 +1345,11 @@ Prec = Precision Macro, FT = Fine-Tuning
 
 Hình 24 cho thấy xu hướng thay đổi của accuracy và F1 macro theo số lượng samples per class.
 
-<figure id="fig:metrics-vs-k">
-<figure id="fig:accuracy-vs-k">
-<img src="Images/multimodal_accuracy_vs_k.png" />
-<figcaption>Accuracy theo số lượng samples per class (K)</figcaption>
-</figure>
-<figure id="fig:f1-vs-k">
-<img src="Images/multimodal_f1_vs_k.png" />
-<figcaption>F1 Macro theo số lượng samples per class (K)</figcaption>
-</figure>
-<figcaption>Xu hướng thay đổi metrics theo K. Quan sát: performance tăng mạnh từ k=1 đến k=5, sau đó có diminishing returns.</figcaption>
-</figure>
+![Accuracy theo số lượng samples per class (K)](Images/multimodal_accuracy_vs_k.png)
+
+![F1 Macro theo số lượng samples per class (K)](Images/multimodal_f1_vs_k.png)
+
+*Hình: Xu hướng thay đổi metrics theo K. Quan sát: performance tăng mạnh từ k=1 đến k=5, sau đó có diminishing returns.*
 
 **Quan sát**:
 
