@@ -85,12 +85,12 @@ export default function Home() {
               <h3 className="font-headline font-bold text-xl mb-4">Project Status</h3>
               <div className="flex items-center justify-between mb-2">
                 <span className="font-body text-sm opacity-80">Completion</span>
-                <span className="font-label font-bold">85%</span>
+                <span className="font-label font-bold">100%</span>
               </div>
               <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-on-primary-container h-full w-[85%]"></div>
+                <div className="bg-on-primary-container h-full w-full"></div>
               </div>
-              <p className="mt-6 font-body text-sm text-primary-fixed-dim italic">"Currently finalizing the neural network optimization for better inference speeds."</p>
+              <p className="mt-6 font-body text-sm text-primary-fixed-dim italic">"Both assignments BTL1 and BTL2 have been completed and published to the portfolio."</p>
             </div>
           </aside>
 
@@ -141,13 +141,38 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Upcoming Project Placeholder */}
-              <div className="p-10 border-2 border-dashed border-outline-variant/30 rounded-xl flex flex-col items-center justify-center text-center opacity-60">
-                <span className="material-symbols-outlined text-4xl text-outline-variant mb-4">pending</span>
-                <h4 className="font-headline text-xl font-bold text-outline">Project 2 (BTL 2)</h4>
-                <p className="font-body text-sm text-on-surface-variant max-w-xs mt-2">
-                  Deployment and optimization phase. Scheduled for release in mid-November.
-                </p>
+              {/* Project 2 (BTL 2) */}
+              <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(25,28,30,0.06)] group flex flex-col md:flex-row">
+                <div className="md:w-1/3 relative h-64 md:h-auto overflow-hidden bg-white flex items-center justify-center">
+                  <img alt="BTL 2 Visual" className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" src="./projects/btl2/Images/output_19.png"/>
+                  <div className="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+                </div>
+                <div className="md:w-2/3 p-10 flex flex-col justify-center">
+                  <div className="flex gap-2 mb-4">
+                    <span className="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">BTL 2</span>
+                    <span className="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider font-label">ACTIVE</span>
+                  </div>
+                  <h4 className="font-headline text-2xl font-bold text-primary mb-4">Object Detection — So sánh YOLOv8, Faster R-CNN & DETR</h4>
+                  <p className="font-body text-on-surface-variant leading-relaxed mb-8">
+                    Phân tích chi tiết kiến trúc và so sánh hiệu năng giữa kiến trúc One-stage (YOLOv8), Two-stage (Faster R-CNN) và Transformer-based (DETR) trên tập dữ liệu KITTI cho bài toán phát hiện đối tượng trong xe tự hành.
+                  </p>
+                  <div className="mt-auto flex items-center justify-between">
+                    <Link to="/project/btl2" className="px-8 py-3 bg-primary text-on-primary rounded-md font-medium text-sm transition-all hover:bg-surface-tint shadow-[0_4px_10px_rgba(0,28,74,0.15)]">
+                      View Details
+                    </Link>
+                    <div className="flex -space-x-3">
+                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Nguyễn Hữu Trưởng">
+                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">HT</div>
+                      </div>
+                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Nguyễn Nhật Thanh">
+                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">NT</div>
+                      </div>
+                      <div className="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high overflow-hidden" title="Võ Thị Bích Phượng">
+                        <div className="w-full h-full flex items-center justify-center text-[10px] font-bold bg-secondary-fixed">BP</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

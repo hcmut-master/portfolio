@@ -53,11 +53,23 @@ export default function ProjectDetails() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="flex flex-col gap-4">
             <div className="flex gap-2">
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">HỌC SÂU</span>
-              <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">THỊ GIÁC MÁY TÍNH</span>
+              {id === 'btl2' ? (
+                <>
+                  <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">OBJECT DETECTION</span>
+                  <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">KITTI DATASET</span>
+                </>
+              ) : (
+                <>
+                  <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">HỌC SÂU</span>
+                  <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase">THỊ GIÁC MÁY TÍNH</span>
+                </>
+              )}
             </div>
             <h1 className="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter leading-tight max-w-4xl">
-              Bài Tập Lớn 1 - Học Sâu Trong Thị Giác Máy Tính
+              {id === 'btl2' 
+                ? 'Bài Tập Lớn 2 - Object Detection trên KITTI'
+                : 'Bài Tập Lớn 1 - Học Sâu Trong Thị Giác Máy Tính'
+              }
             </h1>
             <div className="flex flex-wrap items-center gap-6 mt-4 text-on-primary/80">
               <div className="flex items-center gap-2">
@@ -102,11 +114,11 @@ export default function ProjectDetails() {
             <div className="space-y-2">
               <div className="p-4 bg-surface-container-low rounded-md">
                 <p className="text-xs font-bold text-primary">SUBMISSION</p>
-                <p className="text-sm font-medium">May 12, 2024</p>
+                <p className="text-sm font-medium">{id === 'btl2' ? 'April 8, 2026' : 'May 12, 2024'}</p>
               </div>
               <div className="p-4 bg-surface-container-low rounded-md">
-                <p className="text-xs font-bold text-primary">REVIEW DATE</p>
-                <p className="text-sm font-medium">May 20, 2024</p>
+                <p className="text-xs font-bold text-primary">DATASET</p>
+                <p className="text-sm font-medium">{id === 'btl2' ? 'KITTI Object Detection' : 'CIFAR-10 / IMDB / COCO'}</p>
               </div>
             </div>
           </div>
@@ -116,7 +128,15 @@ export default function ProjectDetails() {
               <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">PyTorch</span>
               <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">OpenCV</span>
               <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">CUDA</span>
-              <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">Weights & Biases</span>
+              {id === 'btl2' ? (
+                <>
+                  <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">Ultralytics YOLOv8</span>
+                  <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">Albumentations</span>
+                  <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">HuggingFace</span>
+                </>
+              ) : (
+                <span className="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-xs font-medium">Weights & Biases</span>
+              )}
             </div>
           </div>
           <div className="p-6 bg-primary-container text-on-primary rounded-xl space-y-4">
